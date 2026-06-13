@@ -20,7 +20,8 @@ const voices = [
     <p class="section-label">VOICE</p>
     <div class="voice__grid">
       {voices.map((v) => (
-        <article class="voice-card">
+        <article class="voice-card" aria-labelledby={`voice-title-${v.attr}`}>
+          <h2 id={`voice-title-${v.attr}`} class="sr-only">お客様の声</h2>
           <p class="voice-card__quote">{v.quote}</p>
           <p class="voice-card__attr">— {v.attr}</p>
         </article>

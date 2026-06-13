@@ -8,7 +8,7 @@ import Profile from '../components/Profile.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 
-const siteUrl = 'https://reisho.biz';
+const siteUrl = Astro.site?.href ?? 'https://冷笑.biz';
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -61,6 +61,95 @@ const jsonLd = {
           },
         ],
       },
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'customer service',
+        url: siteUrl,
+      },
+    },
+    {
+      '@type': 'LocalBusiness',
+      name: '冷笑',
+      url: siteUrl,
+      description: '冷笑診断・冷笑監査・冷笑顧問。経営課題に冷笑を交えたコンサルティングを提供。',
+      foundingDate: '2024',
+      founder: {
+        '@type': 'Person',
+        name: 'R. S.',
+      },
+      knowsAbout: ['経営戦略', '事業計画', '組織開発', '冷笑'],
+      areaServed: 'JP',
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: '冷笑サービス',
+        itemListElement: [
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: '冷笑診断',
+              description: '現状をヒアリングし、笑い終わるまでおよそ3〜5分。その後改善策を提示。',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: '冷笑監査',
+              description: '計画・戦略を精査し、平均7箇所の指摘を加えてレポート納品。',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: '冷笑顧問',
+              description: '毎月1回60分、契約期間中最低12回の冷笑を提供。',
+            },
+          },
+        ],
+      },
+      review: [
+        {
+          '@type': 'Review',
+          reviewRating: {
+            '@type': 'Rating',
+            ratingValue: 5,
+            bestRating: 5,
+          },
+          author: {
+            '@type': 'Person',
+            name: '都内・30代',
+          },
+          reviewBody: '悩みが解決したかどうかはわかりませんが、笑われました。満足しています。',
+        },
+        {
+          '@type': 'Review',
+          reviewRating: {
+            '@type': 'Rating',
+            ratingValue: 4,
+            bestRating: 5,
+          },
+          author: {
+            '@type': 'Person',
+            name: '関西・40代・個人事業主',
+          },
+          reviewBody: 'こんなに堂々と笑われたのは初めてでしたが、気づいたら前に進んでいました。',
+        },
+        {
+          '@type': 'Review',
+          reviewRating: {
+            '@type': 'Rating',
+            ratingValue: 3,
+            bestRating: 5,
+          },
+          author: {
+            '@type': 'Person',
+            name: '匿名',
+          },
+          reviewBody: '料金を聞いたら笑われました。それはちょっと違う気がします。',
+        },
+      ],
     },
   ],
 };

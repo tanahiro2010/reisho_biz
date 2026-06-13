@@ -9,13 +9,13 @@ const links = [
 
 <header class="nav">
   <div class="nav__inner">
-    <a href="#" class="nav__logo">冷笑</a>
+    <a href="/" class="nav__logo">冷笑</a>
     <button class="nav__toggle" id="menuToggle" aria-label="メニューを開く">
       <span></span>
       <span></span>
       <span></span>
     </button>
-    <nav class="nav__links" id="navLinks">
+    <nav class="nav__links" id="navLinks" aria-label="メインメニュー">
       {links.map((link) => (
         <a href={link.href}>{link.label}</a>
       ))}

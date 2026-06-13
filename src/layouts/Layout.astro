@@ -8,14 +8,13 @@ export interface Props {
 
 const { title, description, canonical, ogImage } = Astro.props;
 
-const siteUrl = 'https://reisho.biz';
+const site = Astro.site;
 const defaultTitle = '冷笑 | 冷笑.biz';
 const defaultDescription =
   '経営課題に対して冷笑を交えたコンサルティング。冷笑診断・冷笑監査・冷笑顧問。';
 const pageTitle = title || defaultTitle;
 const pageDescription = description || defaultDescription;
-const pageCanonical = canonical || siteUrl;
-const pageOgImage = ogImage || `${siteUrl}/og-image.png`;
+const pageUrl = canonical || (site ? new URL(Astro.url.pathname, site).href : Astro.url.href);
 ---
 
 <!doctype html>
@@ -23,22 +22,32 @@ const pageOgImage = ogImage || `${siteUrl}/og-image.png`;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#F7F5F0" />
     <title>{pageTitle}</title>
     <meta name="description" content={pageDescription} />
     <meta name="keywords" content="冷笑,コンサルティング,経営相談,事業計画,戦略策定,監査" />
     <meta name="robots" content="index, follow" />
     <meta name="author" content="冷笑" />
-    <link rel="canonical" href={pageCanonical} />
+    <link rel="canonical" href={pageUrl} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
 
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={pageDescription} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={pageCanonical} />
+    <meta property="og:url" content={pageUrl} />
     <meta property="og:site_name" content="冷笑.biz" />
     <meta property="og:locale" content="ja_JP" />
-    <meta property="og:image" content={pageOgImage} />
+    {ogImage && (
+      <>
+        <meta property="og:image" content={new URL(ogImage, site ?? pageUrl).href} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+      </>
+    )}
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
@@ -99,6 +108,18 @@ const pageOgImage = ogImage || `${siteUrl}/og-image.png`;
         max-width: var(--max-width);
         margin: 0 auto;
         padding: 0 40px;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
       }
 
       .section {
