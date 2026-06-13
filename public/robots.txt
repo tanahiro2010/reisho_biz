@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://冷笑.biz/sitemap-index.xml
