@@ -1,0 +1,119 @@
+---
+const services = [
+  {
+    num: '01',
+    title: '冷笑診断',
+    desc: '現状をヒアリングします。笑い終わるまで、およそ3〜5分かかります。その後、改善策を提示します。',
+    note: '所要時間：笑い終わるまで',
+  },
+  {
+    num: '02',
+    title: '冷笑監査',
+    desc: 'ご提出いただいた計画・戦略を精査し、笑います。平均7箇所の指摘を加えた上で、レポートを納品します。',
+    note: '納品物：A4 2〜3枚程度',
+  },
+  {
+    num: '03',
+    title: '冷笑顧問',
+    desc: '毎月1回、60分間お話を伺い、毎回笑います。契約期間中の冷笑回数は、最低12回です。',
+    note: '料金：ご用件がありましたらお知らせください',
+  },
+];
+---
+
+<section class="services section" id="services">
+  <div class="inner">
+    <p class="section-label">SERVICES</p>
+    <div class="services__grid">
+      {services.map((s) => (
+        <article class="service-card">
+          <p class="service-card__num">{s.num}</p>
+          <h2 class="service-card__title">{s.title}</h2>
+          <p class="service-card__desc">{s.desc}</p>
+          <hr class="service-card__divider" />
+          <p class="service-card__note">{s.note}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    background: var(--surface);
+  }
+
+  .services__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+
+  .service-card {
+    padding: 0 32px 0 0;
+  }
+
+  .service-card + .service-card {
+    padding-left: 32px;
+    border-left: 1px solid var(--border);
+  }
+
+  .service-card__num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .service-card__title {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .service-card__desc {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+
+  .service-card__divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin-bottom: 12px;
+  }
+
+  .service-card__note {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  @media (max-width: 768px) {
+    .services__grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .service-card {
+      padding: 0 0 32px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .service-card + .service-card {
+      padding-left: 0;
+      border-left: none;
+      padding-top: 32px;
+    }
+
+    .service-card:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+</style>

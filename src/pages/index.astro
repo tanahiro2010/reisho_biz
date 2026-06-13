@@ -1,11 +1,84 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Voice from '../components/Voice.astro';
+import Profile from '../components/Profile.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const siteUrl = 'https://reisho.biz';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      name: '冷笑.biz',
+      url: siteUrl,
+      description: '経営課題に対して冷笑を交えたコンサルティングを提供します。',
+    },
+    {
+      '@type': 'Organization',
+      name: '冷笑',
+      url: siteUrl,
+      foundingDate: '2024',
+      founder: {
+        '@type': 'Person',
+        name: 'R. S.',
+        jobTitle: '所長',
+      },
+      description:
+        '冷笑診断・冷笑監査・冷笑顧問。経営課題に冷笑を交えたコンサルティングを提供。',
+      knowsAbout: ['経営戦略', '事業計画', '組織開発', '冷笑'],
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: '冷笑サービス',
+        itemListElement: [
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: '冷笑診断',
+              description: '現状をヒアリングし、笑い終わるまでおよそ3〜5分。その後改善策を提示。',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: '冷笑監査',
+              description: '計画・戦略を精査し、平均7箇所の指摘を加えてレポート納品。',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: '冷笑顧問',
+              description: '毎月1回60分、契約期間中最低12回の冷笑を提供。',
+            },
+          },
+        ],
+      },
+    },
+  ],
+};
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="冷笑 | 冷笑.biz"
+  description="経営課題に対して冷笑を交えたコンサルティングを提供。冷笑診断・冷笑監査・冷笑顧問。"
+  canonical={siteUrl}
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Nav />
+  <main>
+    <Hero />
+    <Services />
+    <Voice />
+    <Profile />
+    <Contact />
+  </main>
+  <Footer />
 </Layout>

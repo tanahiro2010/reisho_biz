@@ -1,0 +1,80 @@
+---
+const voices = [
+  {
+    quote: '悩みが解決したかどうかはわかりませんが、笑われました。満足しています。',
+    attr: '都内・30代',
+  },
+  {
+    quote: 'こんなに堂々と笑われたのは初めてでしたが、気づいたら前に進んでいました。',
+    attr: '関西・40代・個人事業主',
+  },
+  {
+    quote: '料金を聞いたら笑われました。それはちょっと違う気がします。',
+    attr: '匿名',
+  },
+];
+---
+
+<section class="voice section" id="voice">
+  <div class="inner">
+    <p class="section-label">VOICE</p>
+    <div class="voice__grid">
+      {voices.map((v) => (
+        <article class="voice-card">
+          <p class="voice-card__quote">{v.quote}</p>
+          <p class="voice-card__attr">— {v.attr}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .voice {
+    background: var(--bg);
+  }
+
+  .voice__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .voice-card {
+    background: var(--surface);
+    padding: 32px;
+    border: 1px solid var(--border);
+  }
+
+  .voice-card__quote {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+
+  .voice-card__quote::before {
+    content: '\201C';
+    font-family: var(--font-serif);
+    font-size: 40px;
+    line-height: 0.4;
+    display: block;
+    color: var(--border);
+    margin-bottom: 12px;
+  }
+
+  .voice-card__attr {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--muted);
+    text-align: right;
+  }
+
+  @media (max-width: 768px) {
+    .voice__grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+</style>

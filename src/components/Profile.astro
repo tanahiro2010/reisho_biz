@@ -1,0 +1,120 @@
+---
+const badges = ['冷笑力検定 一級', '優良冷笑事業所 認定', '冷笑対応 3年連続受賞'];
+---
+
+<section class="profile section" id="profile">
+  <div class="inner">
+    <p class="section-label">PROFILE</p>
+    <div class="profile__grid">
+      <div class="profile__left">
+        <div class="profile__icon">H. T.</div>
+        <div>
+          <p class="profile__role">所長</p>
+          <p class="profile__name">H. T.</p>
+        </div>
+      </div>
+      <div class="profile__right">
+        <p class="profile__text">
+          経営課題のご相談をいただいてから、笑うまでに要する時間は、平均して3分です。<br />
+          笑った後は、必ず改善案を添えて文書でお送りいたします。<br />
+          これまで取り扱った案件は3,000件を超えますが、私がしたことは笑っただけで実際に終了した案件は<br />
+          1件もございません。<br />
+          笑うのは問題の所在を明確にするためであり、笑うこと自体が目的ではありません。
+        </p>
+        <div class="profile__badges">
+          {badges.map((b) => (
+            <span class="profile__badge">{b}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .profile {
+    background: var(--surface);
+  }
+
+  .profile__grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .profile__left {
+    text-align: center;
+  }
+
+  .profile__icon {
+    width: 100px;
+    height: 100px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-family: var(--font-serif);
+    font-size: 28px;
+    color: var(--muted);
+  }
+
+  .profile__role {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .profile__name {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.9;
+    color: var(--text);
+  }
+
+  .profile__text {
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--text);
+    margin-bottom: 24px;
+  }
+
+  .profile__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .profile__badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    line-height: 1;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 6px 12px;
+  }
+
+  @media (max-width: 768px) {
+    .profile__grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .profile__left {
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .profile__icon {
+      margin: 0;
+      flex-shrink: 0;
+    }
+  }
+</style>
